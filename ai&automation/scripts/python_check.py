@@ -28,8 +28,17 @@ api_status = {
     "current_user_url": data.get("current_user_url"),
     "rate_limit_url": data.get("rate_limit_url")
 }
+data = response.json()
+
+output_file = data_dir / "api_output.json"
+with open(output_file, "w", encoding="utf-8") as f:
+    json.dump(data, f, indent=2)
+
+print("API response saved to:", output_file)
+
 
 # 6. Save output to a file
 output_file = data_dir / "api_output.json"
 output_file.write_text(json.dumps(api_status, indent=2), encoding="utf-8")
 print(f"Saved API output to: {output_file}")
+
